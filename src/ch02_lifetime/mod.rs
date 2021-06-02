@@ -9,7 +9,7 @@ pub fn run() {
 
     // ---------------------------------------------
     println!();
-    
+
     // Life without linkd 😞
     let xs = vec![1, 2, 3];
     print_vec(xs);
@@ -49,7 +49,7 @@ pub fn run() {
     // ---------------------------------------------
     println!();
 
-    let s = S {value: 92};
+    let s = S { value: 92 };
     let rs = &s;
     println!("{:?}", *rs);
 
@@ -76,7 +76,9 @@ pub fn run() {
     // ---------------------------------------------
     println!();
 
-    let mut w = Wrapper { value: Box::new(96)};
+    let mut w = Wrapper {
+        value: Box::new(96),
+    };
     let r: &i32 = &*w.value;
     // fw(&mut w); // cannot borrow `w` as mutable because it is also borrowed as immutable
     println!("{}", r);
@@ -90,7 +92,7 @@ pub fn run() {
     //     let bacon = open_bacon(&mut refrigerator);
     //     fry(eggs, bacon);
     // };
-    
+
     // ---------------------------------------------
     println!();
 
@@ -118,13 +120,9 @@ pub fn run() {
     // ---------------------------------------------
     println!();
 
-    // `;` after let always needed! 
+    // `;` after let always needed!
     let x = 666;
-    let s = if x > 6 {
-        "positive"
-    } else {
-        "negative"
-    };
+    let s = if x > 6 { "positive" } else { "negative" };
     println!("s = {}", s);
 
     // ---------------------------------------------
@@ -132,7 +130,7 @@ pub fn run() {
 
     // Structures
     let p1 = Point { x: 2.0, y: 3.0 };
-    let p2 = Point { x: 3.0, .. p1};
+    let p2 = Point { x: 3.0, ..p1 };
     assert_eq!(p2.x, p2.y);
 
     let p = Point::origin();
@@ -198,10 +196,12 @@ fn f<'a, 'b>(x: &'a i32, y: &'b i32) -> &'a i32 {
 }
 
 #[derive(Debug)]
-struct S {value: i32}
+struct S {
+    value: i32,
+}
 
 struct Wrapper {
-    value: Box<i32>
+    value: Box<i32>,
 }
 
 fn fw(w: &mut Wrapper) {
@@ -225,7 +225,7 @@ impl Point {
     }
 
     fn origin() -> Point {
-        Point {x: 0.0, y: 0.0 }
+        Point { x: 0.0, y: 0.0 }
     }
 }
 
@@ -283,7 +283,7 @@ impl Shape {
 
     fn area(shape: Shape) -> f64 {
         match shape {
-            Shape::Circle  => {
+            Shape::Circle => {
                 // let radius = Shape::Circle { radius, .. };
                 // std::f64::consts::PI * radius * radius
                 // unimplemented!()
